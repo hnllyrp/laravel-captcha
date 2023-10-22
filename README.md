@@ -69,5 +69,5 @@ $.get("api/captcha",{}, function(data){
 
 ### 感谢：
 
-https://github.com/top-think/think-captcha
-https://github.com/mewebstudio/captcha
+- https://github.com/top-think/think-captcha
+- https://github.com/mewebstudio/captcha
