@@ -1,0 +1,46 @@
+{
+    "name": "hnllyrp/laravel-captcha",
+    "description": "The captcha package for laravel",
+    "keywords": [
+        "php",
+        "laravel",
+        "captcha"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "hnllyrp",
+            "email": "hnllyrp@126.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2.5|^8.0",
+        "laravel/framework": "^6.0"
+    },
+    "autoload": {
+        "files": [
+            "src/helper.php"
+        ],
+        "psr-4": {
+            "Hnllyrp\\Captcha\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Hnllyrp\\Captcha\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Hnllyrp\\Captcha\\CaptchaServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
