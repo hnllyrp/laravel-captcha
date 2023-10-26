@@ -50,22 +50,22 @@ class CaptchaServiceProvider extends ServiceProvider implements DeferrableProvid
                     // $router->post('verify_captcha', 'CaptchaController@verifyCaptcha')->middleware('web');
                 });
             }
-        }
 
-        /* @var Factory $validator */
-        $validator = $this->app['validator'];
-        $message = ':attribute 不正确或已过期。';
-        // Validator extensions
-        $validator->extend('captcha', function ($attribute, $value, $parameters) {
-            $type = $parameters[0] ?? 'default';
-            return config('captcha.disable') || ($value && captcha_check($type, $value));
-        }, $message);
-        // $parameters exp: 'required|captcha_api:default,hash';
-        $validator->extend('captcha_api', function ($attribute, $value, $parameters) {
-            $type = $parameters[0] ?? 'default';
-            $hash = $parameters[1] ?? '';
-            return config('captcha.disable') || ($value && captcha_api_check($type, $value, $hash));
-        }, $message);
+            /* @var Factory $validator */
+            $validator = $this->app['validator'];
+            $message = ':attribute 不正确或已过期。';
+            // Validator extensions
+            $validator->extend('captcha', function ($attribute, $value, $parameters) {
+                $captcha_type = $parameters[0] ?? 'default';
+                return config('captcha.disable') || ($value && captcha_check($captcha_type, $value));
+            }, $message);
+            // $parameters exp: 'required|captcha_api:default,hash';
+            $validator->extend('captcha_api', function ($attribute, $value, $parameters) {
+                $captcha_type = $parameters[0] ?? 'default';
+                $captcha_hash = $parameters[1] ?? '';
+                return config('captcha.disable') || ($value && captcha_api_check($captcha_type, $value, $captcha_hash));
+            }, $message);
+        }
 
     }
 

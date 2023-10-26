@@ -28,9 +28,9 @@ class CaptchaController extends Controller
      */
     public function verifyCaptcha(Request $request)
     {
-        $type = $request->input('type', 'default');
+        $captcha_type = $request->input('captcha_type', 'default');
         $validator = Validator::make($request->all(), [
-            'captcha' => ['required', 'captcha:' . $type],
+            'captcha' => ['required', 'captcha:' . $captcha_type],
         ]);
 
         if ($validator->fails()) {
@@ -59,10 +59,10 @@ class CaptchaController extends Controller
      */
     public function verifyCaptchaApi(Request $request)
     {
-        $type = $request->input('type', 'default');
-        $hash = $request->input('hash');
+        $captcha_type = $request->input('captcha_type', 'default');
+        $captcha_hash= $request->input('captcha_hash');
         $validator = Validator::make($request->all(), [
-            'captcha' => ['required', 'captcha_api:' . $type . ',' . $hash],
+            'captcha' => ['required', 'captcha_api:' . $captcha_type . ',' . $captcha_hash],
         ]);
 
         if ($validator->fails()) {

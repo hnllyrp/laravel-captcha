@@ -1,12 +1,11 @@
 @if (config('captcha.disable') == false)
     <fieldset class="form-label-group form-inline position-relative">
 
-        <input type="text" id="captcha" class="form-control {{ $errors->has('captcha') ? 'is-invalid' : '' }}"
-               name="captcha"
-               placeholder="{{ trans('validation.attributes.captcha') }}" required autofocus style="max-width:50%;"
-        >
+        <input type="text" id="captcha"  name="captcha" class="form-control {{ $errors->has('captcha') ? 'is-invalid' : '' }}"
+               placeholder="{{ trans('validation.attributes.captcha') }}" required autofocus style="max-width:50%;" />
 
-        <img style="padding-left: 10px" src="{{captcha_src()}}" onclick="this.src='{{captcha_src()}}'+Math.random()" title="" alt="">
+        <img style="padding-left:10px" src="{{captcha_src('mathe')}}" onclick="this.src='{{captcha_src('mathe')}}?'+Math.random()" alt="" />
+        <input type="hidden" name="captcha_type" value="mathe" />
 
         <div class="help-block with-errors"></div>
         @if($errors->has('captcha'))

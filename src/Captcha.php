@@ -222,9 +222,9 @@ class Captcha
 
         $cache_name = 'laravel_captcha' . $type ?? '';
         if ($api == true) {
-            Cache::put($this->get_cache_key($cache_name, $hash), $hash, $this->expire);
+            Cache::put($this->get_cache_key($cache_name, $hash), $hash, (int)$this->expire);
         } else {
-            $this->session->put($cache_name, ['key' => $hash]);
+            $this->session->put($cache_name, ['key' => $hash, 'time' => now()->timestamp]);
         }
 
         return [
@@ -259,6 +259,13 @@ class Captcha
         }
 
         $key = $this->session->get($cache_name)['key'];
+        $time = $this->session->get($cache_name)['time'];
+
+        if (now()->timestamp - $time > $this->expire) {
+            // session 过期
+            $this->session->forget($cache_name);
+            return false;
+        }
 
         $code = mb_strtolower($code, 'UTF-8');
 
@@ -288,6 +295,9 @@ class Captcha
         }
 
         $key = Cache::get($cache_key);
+        if (empty($key)) {
+            return false;
+        }
 
         $code = mb_strtolower($code, 'UTF-8');
 
