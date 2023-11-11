@@ -60,7 +60,7 @@ class CaptchaController extends Controller
     public function verifyCaptchaApi(Request $request)
     {
         $captcha_type = $request->input('captcha_type', 'default');
-        $captcha_hash= $request->input('captcha_hash');
+        $captcha_hash = $request->input('captcha_hash');
         $validator = Validator::make($request->all(), [
             'captcha' => ['required', 'captcha_api:' . $captcha_type . ',' . $captcha_hash],
         ]);

@@ -24,7 +24,7 @@ class Captcha
     protected $session;
 
     // 验证码字符集合
-    protected $codeSet = '2345678abcdefhijkmnpqrstuvwxyzABCDEFGHJKLMNPQRTUVWXY';
+    protected $codeSet = '2345678abcdefhjkmnpqrstuvwxyzABCDEFGHJKLMNPQRTUVWXY';
     // 验证码过期时间（s）
     protected $expire = 1800;
     // 使用中文验证码

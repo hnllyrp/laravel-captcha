@@ -40,24 +40,24 @@ if (!function_exists('captcha_img')) {
 if (!function_exists('captcha_check')) {
     /**
      * @param string $type
-     * @param string $value
+     * @param string $code
      * @return bool
      */
-    function captcha_check(string $type = 'default', string $value = '')
+    function captcha_check(string $type = 'default', string $code = '')
     {
-        return Captcha::check($type, $value);
+        return Captcha::check($type, $code);
     }
 }
 
 if (!function_exists('captcha_api_check')) {
     /**
      * @param string $type
-     * @param string $value
+     * @param string $code
      * @param string $hash
      * @return bool
      */
-    function captcha_api_check(string $type = 'default', string $value = '', string $hash = '')
+    function captcha_api_check(string $type = 'default', string $code = '', string $hash = '')
     {
-        return Captcha::check_api($type, $value, $hash);
+        return Captcha::check_api($type, $code, $hash);
     }
 }

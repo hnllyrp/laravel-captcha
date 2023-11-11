@@ -2,13 +2,12 @@
 
 namespace Hnllyrp\Captcha;
 
-use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Factory;
 
-class CaptchaServiceProvider extends ServiceProvider implements DeferrableProvider
+class CaptchaServiceProvider extends ServiceProvider
 {
     /**
      * Register the service provider.
@@ -52,7 +51,7 @@ class CaptchaServiceProvider extends ServiceProvider implements DeferrableProvid
             }
 
             /* @var Factory $validator */
-            $validator = $this->app['validator'];
+            $validator = $this->app->make('validator');
             $message = ':attribute 不正确或已过期。';
             // Validator extensions
             $validator->extend('captcha', function ($attribute, $value, $parameters) {
@@ -66,16 +65,6 @@ class CaptchaServiceProvider extends ServiceProvider implements DeferrableProvid
                 return config('captcha.disable') || ($value && captcha_api_check($captcha_type, $value, $captcha_hash));
             }, $message);
         }
-
     }
 
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return ['captcha'];
-    }
 }

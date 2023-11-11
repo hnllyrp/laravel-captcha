@@ -6,11 +6,11 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class Captcha
- * @method static create($type, $api)
- * @method static src($type)
- * @method static img($type, $attrs)
- * @method static check($type, $value)
- * @method static check_api($type, $value, $key)
+ * @method static create($type = 'default', $api = false)
+ * @method static src($type = 'default')
+ * @method static img($type = 'default', array $attrs = [])
+ * @method static check($type = 'default', $code = '')
+ * @method static check_api($type = 'default', $code = '', $hash = '')
  */
 class Captcha extends Facade
 {
